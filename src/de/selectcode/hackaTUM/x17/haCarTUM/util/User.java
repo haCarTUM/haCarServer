@@ -8,8 +8,8 @@ import java.util.List;
  * @author Matthias Kammueller
  */
 public abstract class User {
-    int CustomerID;
-    String name, address;
+    int customerID;
+    String first, last, ether;
     List<Integer> vehicleIDs;
 
     public abstract void notifyOfChange(String text); // TODO: how? what?

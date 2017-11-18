@@ -24,10 +24,11 @@ public interface HaCarServer {
     String addVehicle(@WebParam(name = "customerID") int customerID, @WebParam(name = "vehicleID") int vehicleID);
 
     /**
-     * @param customerID the vehcile / customer ID % TODO?!
+     * @param customerID the ID of the customer
+     * @param vehicleID  the ID of the car
      * @return the text for the app, analyzing all un-analyzed data
      */
-    String evaluateDrive(@WebParam(name = "customerID") int customerID);
+    String evaluateDrive(@WebParam(name = "customerID") int customerID, @WebParam(name = "vehicleID") int vehicleID);
 
     /**
      * @param customerID the vehcile / customer ID % TODO?!

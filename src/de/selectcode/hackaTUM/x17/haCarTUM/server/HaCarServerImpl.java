@@ -20,7 +20,7 @@ public class HaCarServerImpl implements HaCarServer {
 
     @Override
     public void addDriveData(float x, float y, float z, int carID) {
-
+        azure.addDriveData(x, y, z, carID);
     }
 
     public String addCustomer(String first, String last, String ether) {
@@ -41,8 +41,8 @@ public class HaCarServerImpl implements HaCarServer {
     }
 
     @Override
-    public String evaluateDrive(int customerID) {
-        return "your new rating: " + azure.getRatingForUser(customerID);
+    public String evaluateDrive(int customerID, int vehicleID) {
+        return "your new rating: " + azure.getRatingForUser(vehicleID);
     }
 
     @Override

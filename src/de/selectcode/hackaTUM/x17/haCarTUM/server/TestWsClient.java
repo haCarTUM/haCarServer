@@ -15,7 +15,7 @@ public class TestWsClient {
                 new QName("http://server.haCarTUM.x17.hackaTUM.selectcode.de/", "HaCarServerImplService"));
         HaCarServer haCarServer = service.getPort(HaCarServer.class);
         System.out.println("\n" + haCarServer.addCustomer("Terror", "Hitler", "Ficken"));
-        System.out.println("\n" + haCarServer.evaluateDrive(0));
+        System.out.println("\n" + haCarServer.evaluateDrive(0, 0));
         System.out.println("\n" + haCarServer.refund(0, 100));
     }
 }
