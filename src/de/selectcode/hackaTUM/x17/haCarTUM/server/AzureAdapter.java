@@ -2,14 +2,36 @@ package de.selectcode.hackaTUM.x17.haCarTUM.server;
 
 import de.selectcode.hackaTUM.x17.haCarTUM.util.User;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.DriverManager;
+/*
+CREATE TABLE users (
+  id        INT PRIMARY KEY IDENTITY (1, 1),
+  firstname VARCHAR(128),
+  lastname  VARCHAR(128),
+  ether     TEXT
+);
+
+CREATE TABLE cars (
+  customer INT,
+  carNr    INT PRIMARY KEY,
+  rating   FLOAT,
+  absData  INT
+);
+
+CREATE TABLE drive_data (
+  nr  INT PRIMARY KEY IDENTITY (1, 1),
+  car INT,
+  x   FLOAT,
+  y   FLOAT,
+  z   FLOAT,
+);
+ */
 
 /**
  * communication with the Azure Database & the AI
@@ -25,14 +47,13 @@ public class AzureAdapter {
         String user = "matthias";
         String password = "Palladium$1";
         String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
-        Connection connection = null;
+        Connection connection;
 
         try {
             connection = DriverManager.getConnection(url);
             String schema = connection.getSchema();
             System.out.println("Successful connection - Schema: " + schema);
 
-            System.out.println("Query data example:");
             System.out.println("=========================================");
 
             // Create and execute a SELECT SQL statement.
@@ -60,11 +81,12 @@ public class AzureAdapter {
     }
 
     /**
-     * @param name    name of the user
-     * @param address address of the user, e.g. for invoices
+     * @param last  last name
+     * @param first first name
+     * @param ether     his ether "credential"
      * @return -1 if failed, otherwise the customer id
      */
-    int addUser(String name, String address) {
+    int addUser(String last, String first, String ether) {
         return -1;
     }
 

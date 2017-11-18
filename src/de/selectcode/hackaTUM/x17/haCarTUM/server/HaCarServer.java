@@ -8,11 +8,13 @@ import javax.jws.*;
 @WebService
 public interface HaCarServer {
     /**
-     * @param name    the name of the new user
-     * @param address his address
-     * @return the text for the app
+     * @param first first name of the new user
+     * @param last  last name of the new user
+     * @param ether the ether credentials of the new user
+     * @return the welcoming text for the app
      */
-    String addCustomer(@WebParam(name = "name") String name, @WebParam(name = "address") String address);
+    String addCustomer(@WebParam(name = "first name") String first, @WebParam(name = "last name") String last,
+                       @WebParam(name = "ether") String ether);
 
     /**
      * @param customerID which customer ...

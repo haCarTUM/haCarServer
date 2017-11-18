@@ -18,12 +18,13 @@ public class HaCarServerImpl implements HaCarServer {
         this.policy = policy;
     }
 
-    public String addCustomer(String name, String addr) {
-        final int user = azure.addUser(name, addr);
+    public String addCustomer(String first, String last, String ether) {
+        // TODO: verify ether
+        final int user = azure.addUser(first, last, ether);
         if (user == -1) {
             return "well, that didn't work";
         }
-        return "Welcome to haCarTUM, " + name;
+        return "Welcome to haCarTUM, " + first + " " + last;
     }
 
     @Override
