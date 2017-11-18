@@ -10,7 +10,7 @@ import javax.xml.ws.Endpoint;
  * @author Matthias Kammueller
  */
 @WebService()
-public class HelloWorld {
+public class Server {
     @WebMethod
     public String sayHelloWorldFrom(String from) {
         String result = "Hello, world, from " + from;
@@ -19,6 +19,7 @@ public class HelloWorld {
     }
 
     public static void main(String[] argv) {
+        System.out.println("Server is booting ...");
         Object implementor = new HaCarServerImpl();
         String address = "http://localhost:9000/HaCarTUM";
         Endpoint.publish(address, implementor);
