@@ -42,7 +42,7 @@ public class HaCarServerImpl implements HaCarServer {
 
     @Override
     public String evaluateDrive(int customerID, int vehicleID) {
-        return "your new rating: " + azure.getRatingForUser(vehicleID);
+        return "your new rating: " + azure.getRatingForVehicle(vehicleID);
     }
 
     @Override

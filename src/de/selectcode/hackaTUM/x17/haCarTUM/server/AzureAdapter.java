@@ -60,13 +60,14 @@ public class AzureAdapter {
      * @param ether his ether "credential"
      * @return -1 if failed, otherwise the customer id
      */
-    int addUser(String last, String first, String ether) {
+    public int addUser(String last, String first, String ether) {
+        // TODO check ether
         String selectSql =
-                "INSERT INTO users (firstname, lastname, ether) VALUES (" + first + ", " + last + ", " + ether + ")";
+                "INSERT INTO users (firstname, lastname, ether) VALUES ('" + first + "', '" + last + "', '" + ether + "')";
 
         try {
             Statement statement = connection.createStatement();
-            statement.executeQuery(selectSql);
+            statement.execute(selectSql);
 
             return 0; // TODO: find a way to get the real cID
         } catch (SQLException e1) {
@@ -75,7 +76,7 @@ public class AzureAdapter {
         }
     }
 
-    List<User> getUsers() {
+    public List<User> getUsers() {
         // Create and execute a SELECT SQL statement.
         String selectSql = "SELECT * FROM users";
 
@@ -84,8 +85,8 @@ public class AzureAdapter {
             List<User> users = new ArrayList<>();
 
             while (resultSet.next()) {
-                users.add(new UserDummy(resultSet.getInt(0), resultSet.getString(1),
-                        resultSet.getString(2), resultSet.getString(3)));
+                users.add(new UserDummy(resultSet.getInt(1), resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getString(4)));
             }
             return users;
 
@@ -102,8 +103,9 @@ public class AzureAdapter {
      * @param v the vehicle ID
      * @return the current rating in [1, 5]
      */
-    int getRatingForUser(int v) {
+    public int getRatingForVehicle(int v) {
         //TODO  AI.calculateRating(uID)
+        // TODO: check if existent
         int ratingForLastDrives = 2; // AI-Job
         int absLastDrives = 1337; // AI-Job (# of data)
         final float abs = getAbsData(v);
@@ -117,11 +119,11 @@ public class AzureAdapter {
      */
     private boolean setRating(int car, float newRating) {
         String selectSql =
-                "UPDATE cars SET rating = " + newRating + " WHERE carNr =" + car + ";";
+                "UPDATE cars SET rating = '" + newRating + "' WHERE carNr ='" + car + "';";
 
         try {
             Statement statement = connection.createStatement();
-            statement.executeQuery(selectSql);
+            statement.execute(selectSql);
             return true;
         } catch (SQLException e1) {
             e1.printStackTrace();
@@ -134,7 +136,7 @@ public class AzureAdapter {
      * @return the current rating
      */
     private float getRating(int car) {
-        String selectSql = "SELECT * FROM cars WHERE carNr = " + car + ";";
+        String selectSql = "SELECT * FROM cars WHERE carNr = '" + car + "';";
 
         try {
             Statement statement = connection.createStatement();
@@ -154,7 +156,7 @@ public class AzureAdapter {
      * @return the scale of the rating, -1 if failure
      */
     private float getAbsData(int car) {
-        String selectSql = "SELECT * FROM cars WHERE carNr = " + car + ";";
+        String selectSql = "SELECT * FROM cars WHERE carNr = '" + car + "';";
 
         try {
             Statement statement = connection.createStatement();
@@ -175,13 +177,13 @@ public class AzureAdapter {
      * @return true in case of success
      * TODO: waiting for response? (maybe in future...)
      */
-    boolean addCar(int userID, int vehicleID) {
+    public boolean addCar(int userID, int vehicleID) {
         String selectSql =
-                "INSERT INTO cars (customer, carNr, rating, absData) VALUES (" + userID + ", " + vehicleID + ", 2, 1)";
+                "INSERT INTO cars (customer, carNr, rating, absData) VALUES ('" + userID + "', '" + vehicleID + "', 2, 1)";
 
         try {
             Statement statement = connection.createStatement();
-            statement.executeQuery(selectSql);
+            statement.execute(selectSql);
 
             return true;
         } catch (SQLException e1) {
@@ -190,17 +192,39 @@ public class AzureAdapter {
         }
     }
 
-    void addDriveData(float x, float y, float z, int carID) {
+    public void addDriveData(float x, float y, float z, int carID) {
         String selectSql =
-                "INSERT INTO drive_data (car, x, y, z) VALUES (" + carID + ", " + x + ", " + y + ", " + z + ")";
+                "INSERT INTO drive_data (car, x, y, z) VALUES ('" + carID + "', '" + x + "', '" + y + "', '" + z + "')";
 
         try {
             Statement statement = connection.createStatement();
-            statement.executeQuery(selectSql);
+            statement.execute(selectSql);
 
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
+    }
+
+    /**
+     *
+     * @param userNr the customer ID
+     * @return the IDs of his vehicles
+     */
+    public List<Integer> findVehicles(int userNr) {
+        ArrayList<Integer> cars = new ArrayList<>();
+        String selectSql = "SELECT * FROM cars WHERE customer = '" + userNr + "';";
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(selectSql);
+
+            while (resultSet.next()) {
+                cars.add(resultSet.getInt("carNr"));
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        return cars;
     }
 
 }

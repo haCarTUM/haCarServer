@@ -16,4 +16,14 @@ public class UserDummy extends User {
         System.out.println("i'm to lazy ...");
         // do nothing
     }
+
+    @Override
+    public String toString() {
+        return "UserDummy{" +
+                "customerID=" + customerID +
+                ", first='" + first + '\'' +
+                ", last='" + last + '\'' +
+                ", ether='" + ether + '\'' +
+                '}';
+    }
 }
