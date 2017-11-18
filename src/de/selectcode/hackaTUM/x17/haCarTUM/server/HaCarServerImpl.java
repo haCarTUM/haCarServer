@@ -18,6 +18,11 @@ public class HaCarServerImpl implements HaCarServer {
         this.policy = policy;
     }
 
+    @Override
+    public void addDriveData(float x, float y, float z, int carID) {
+
+    }
+
     public String addCustomer(String first, String last, String ether) {
         // TODO: verify ether
         final int user = azure.addUser(first, last, ether);

@@ -74,12 +74,6 @@ public class AzureAdapter {
         }
     }
 
-    // TODO: uplink 'n' stuff
-
-    public AzureAdapter() {
-        // ...
-    }
-
     /**
      * @param last  last name
      * @param first first name
@@ -123,6 +117,10 @@ public class AzureAdapter {
      */
     boolean addCar(int userID, int vehicleID) {
         return false;
+    }
+
+    void addDriveData(float x, float y, float z, int carID) {
+        // TODO
     }
 
 }
