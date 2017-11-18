@@ -44,10 +44,11 @@ public class HaCarServerImpl implements HaCarServer {
         if (policy == null) {
             return "sorry, but the policy has no rules about refunding yet";
         }
-        if (amount == 0) {
+        int ref = policy.doesUserGetRefund(customerID, amount);
+        if (ref == 0) {
             return "sorry, but we could not accept your request. You should drive more carefully!";
         }
-        return String.format("that was successful. you will receive %d cents.", amount);
+        return String.format("that was successful. you will receive %d cents.", ref);
     }
 
     @Override
