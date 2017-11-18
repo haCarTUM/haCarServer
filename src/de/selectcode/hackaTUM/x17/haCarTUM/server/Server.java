@@ -1,6 +1,5 @@
 package de.selectcode.hackaTUM.x17.haCarTUM.server;
 
-import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
 
@@ -11,16 +10,12 @@ import javax.xml.ws.Endpoint;
  */
 @WebService()
 public class Server {
-    @WebMethod
-    public String sayHelloWorldFrom(String from) {
-        String result = "Hello, world, from " + from;
-        System.out.println(result);
-        return result;
-    }
-
     public static void main(String[] argv) {
+        InsuranceCompanyPolicy company = new InsureDummy();
+        HaCarServer implementor = new HaCarServerImpl();
+        implementor.setPolicy(company);
+
         System.out.println("Server is booting ...");
-        Object implementor = new HaCarServerImpl();
         String address = "http://localhost:9000/HaCarTUM";
         Endpoint.publish(address, implementor);
     }

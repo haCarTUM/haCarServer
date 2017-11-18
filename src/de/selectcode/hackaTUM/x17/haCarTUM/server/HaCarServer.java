@@ -8,10 +8,18 @@ import javax.jws.*;
 @WebService
 public interface HaCarServer {
     /**
-     * @param vehicleID adds a new customer to the contract
+     * @param name    the name of the new user
+     * @param address his address
      * @return the text for the app
      */
-    String addCustomer(@WebParam(name = "vehicleID") String vehicleID);
+    String addCustomer(@WebParam(name = "name") String name, @WebParam(name = "address") String address);
+
+    /**
+     * @param customerID which customer ...
+     * @param vehicleID  wants to add which car?
+     * @return the text for the app
+     */
+    String addVehicle(@WebParam(name = "customerID") int customerID, @WebParam(name = "vehicleID") int vehicleID);
 
     /**
      * @param customerID the vehcile / customer ID % TODO?!
@@ -28,7 +36,13 @@ public interface HaCarServer {
 
     /**
      * recalculates the contract of every customer.
-     * TODO: find a way to notify them
      */
     void recalculateContracts();
+
+    /**
+     * has to be set before refund may be called
+     *
+     * @param policy the refunding policy
+     */
+    void setPolicy(InsuranceCompanyPolicy policy);
 }
