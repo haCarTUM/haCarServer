@@ -47,7 +47,7 @@ public interface HaCarServer {
      * @param carAddress
      * @param customerAddress
      */
-    void createContract(@WebParam(name = "carAddr") String carAddress, @WebParam(name = "cutsAddr") String customerAddress);
+    boolean createContract(@WebParam(name = "carAddr") String carAddress, @WebParam(name = "cutsAddr") String customerAddress);
 
     /**
      * has to be set before refund may be called

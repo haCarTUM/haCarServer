@@ -16,6 +16,8 @@ import java.util.List;
 
 public class EthereumAdapter {
 
+    public static final String CarAddress = "0x872a330b8f284288f77e5ac93a62fbe7f4e98bd9";
+
     private static EthereumAdapter instance;
     List<Contract> contracts = new ArrayList<>();
     private Credentials creds = null;

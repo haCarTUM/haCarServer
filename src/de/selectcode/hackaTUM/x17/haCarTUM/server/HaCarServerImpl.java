@@ -2,7 +2,6 @@ package de.selectcode.hackaTUM.x17.haCarTUM.server;
 
 import de.selectcode.hackaTUM.x17.haCarTUM.server.ether.EthereumAdapter;
 import de.selectcode.hackaTUM.x17.haCarTUM.util.User;
-import org.web3j.utils.Convert;
 
 import javax.jws.WebService;
 
@@ -62,7 +61,13 @@ public class HaCarServerImpl implements HaCarServer {
     }
 
     @Override
-    public void createContract(String carAddress, String customerAddress) {
-        EthereumAdapter.getInstance().deployContract();
+    public boolean createContract(String carAddress, String customerAddress) {
+        try {
+            EthereumAdapter.getInstance().deployContract(12500000, EthereumAdapter.CarAddress, customerAddress, 250000000, 1000000000);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
