@@ -1,6 +1,8 @@
 package de.selectcode.hackaTUM.x17.haCarTUM.server;
 
+import de.selectcode.hackaTUM.x17.haCarTUM.server.ether.EthereumAdapter;
 import de.selectcode.hackaTUM.x17.haCarTUM.util.User;
+import org.web3j.utils.Convert;
 
 import javax.jws.WebService;
 
@@ -10,17 +12,12 @@ public class HaCarServerImpl implements HaCarServer {
     private InsuranceCompanyPolicy policy;
 
     public HaCarServerImpl() {
-        azure = new AzureAdapter("trainingsdaten");
+        azure = new AzureAdapter();
         policy = new InsureDummy();
     }
 
     public void setPolicy(InsuranceCompanyPolicy policy) {
         this.policy = policy;
-    }
-
-    @Override
-    public void addDriveData(float x, float y, float z, int carID) {
-        azure.addDriveData(x, y, z, carID);
     }
 
     public String addCustomer(String first, String last, String ether) {
@@ -58,9 +55,14 @@ public class HaCarServerImpl implements HaCarServer {
     }
 
     @Override
-    public void recalculateContracts() {
+    public void updateContracts() {
         for (User user : azure.getUsers()) {
             user.notifyOfChange("Your account will be charged in the next days!");
         }
+    }
+
+    @Override
+    public void createContract(String carAddress, String customerAddress) {
+        EthereumAdapter.getInstance().deployContract();
     }
 }

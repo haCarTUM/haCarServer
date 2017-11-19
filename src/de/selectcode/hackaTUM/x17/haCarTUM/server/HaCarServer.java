@@ -40,7 +40,14 @@ public interface HaCarServer {
     /**
      * recalculates the contract of every customer.
      */
-    void recalculateContracts();
+    void updateContracts();
+
+    /**
+     * Create a new contract for a customer
+     * @param carAddress
+     * @param customerAddress
+     */
+    void createContract(@WebParam(name = "carAddr") String carAddress, @WebParam(name = "cutsAddr") String customerAddress);
 
     /**
      * has to be set before refund may be called
@@ -55,6 +62,6 @@ public interface HaCarServer {
      * @param z  accelerateZ
      * @param id the ID of the car (cf. addVehicle)
      */
-    void addDriveData(@WebParam(name = "xAccel") float x, @WebParam(name = "yAccel") float y,
-                      @WebParam(name = "zAccel") float z, @WebParam(name = "vehicleID") int id);
+    /*void addDriveData(@WebParam(name = "xAccel") float x, @WebParam(name = "yAccel") float y,
+                      @WebParam(name = "zAccel") float z, @WebParam(name = "vehicleID") int id);*/
 }

@@ -11,10 +11,13 @@ import org.web3j.tx.ManagedTransaction;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EthereumAdapter {
 
     private static EthereumAdapter instance;
+    List<Contract> contracts = new ArrayList<>();
     private Credentials creds = null;
     private Web3j web = Web3j.build(new HttpService("https://rinkeby.infura.io/IU8iPEXDIjDgnNsZVZVM"));
 
@@ -28,11 +31,18 @@ public class EthereumAdapter {
         }
     }
 
-
     public static EthereumAdapter getInstance() {
         if (instance == null)
             instance = new EthereumAdapter();
         return instance;
+    }
+
+    public void updateContract(PayHowYouDriveInsurance c, int level) {
+        c.setDrivingLevel(BigInteger.valueOf(level));
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
     }
 
     /**
@@ -50,6 +60,8 @@ public class EthereumAdapter {
         PayHowYouDriveInsurance contract = PayHowYouDriveInsurance.deploy(web, creds, ManagedTransaction.GAS_PRICE,
                 BigInteger.valueOf(999999), BigInteger.valueOf(payment), costumerAddress, carAddress, BigInteger.valueOf(bonus),
                 BigInteger.valueOf(max)).send();
+
+        contracts.add(contract);
 
         return contract;
     }
