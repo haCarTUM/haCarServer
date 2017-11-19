@@ -27,6 +27,7 @@
     <orderEntry type="library" name="JAX-WS-Glassfish / JAX-WS 2.2 RI / Metro 1.X / JWSDP 2.2" level="project" />
     <orderEntry type="library" name="org.web3j:core:3.0.2" level="project" />
     <orderEntry type="library" name="com.microsoft.sqlserver:mssql-jdbc:6.2.2.jre8" level="project" />
+    <orderEntry type="library" name="Maven: com.microsoft.sqlserver:mssql-jdbc:6.2.1.jre8" level="project" />
     <orderEntry type="library" name="Maven: org.web3j:core:3.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.web3j:abi:3.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.web3j:utils:3.1.1" level="project" />
@@ -55,5 +56,7 @@
     <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.13.0" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:logging-interceptor:3.8.1" level="project" />
     <orderEntry type="library" name="Maven: io.reactivex:rxjava:1.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.clojure:java.jdbc:0.7.3" level="project" />
+    <orderEntry type="library" name="Maven: org.clojure:clojure:1.7.0" level="project" />
   </component>
 </module>

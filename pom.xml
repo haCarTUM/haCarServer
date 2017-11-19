@@ -8,10 +8,22 @@
     <version>0.1-BEEEEETATUM</version>
     <dependencies>
         <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>6.2.1.jre8</version>
+        </dependency>
+        <dependency>
             <groupId>org.web3j</groupId>
             <artifactId>core</artifactId>
             <version>3.1.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.clojure/java.jdbc -->
+        <dependency>
+            <groupId>org.clojure</groupId>
+            <artifactId>java.jdbc</artifactId>
+            <version>0.7.3</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

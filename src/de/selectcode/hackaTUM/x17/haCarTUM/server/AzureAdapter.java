@@ -37,10 +37,9 @@ CREATE TABLE drive_data (
 public class AzureAdapter {
     private Connection connection;
 
-    public AzureAdapter() {
+    public AzureAdapter(String dbName) {
         // Connect to database
         String hostName = "hacartum.database.windows.net";
-        String dbName = "trainingsdaten";
         String user = "matthias";
         String password = "Palladium$1";
         String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);

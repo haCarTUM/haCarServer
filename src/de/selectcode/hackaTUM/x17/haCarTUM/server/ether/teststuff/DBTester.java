@@ -6,7 +6,7 @@ public class DBTester {
     public static void main(String[] args) {
 
 
-        AzureAdapter adapter = new AzureAdapter();
+        AzureAdapter adapter = new AzureAdapter("trainingsdaten");
         System.out.println(adapter.getUsers());
 //        adapter.addUser("huber", "horst", "haha");
 //        System.out.println(adapter.getUsers());

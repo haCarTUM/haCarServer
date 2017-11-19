@@ -10,7 +10,7 @@ public class HaCarServerImpl implements HaCarServer {
     private InsuranceCompanyPolicy policy;
 
     public HaCarServerImpl() {
-        azure = new AzureAdapter();
+        azure = new AzureAdapter("trainingsdaten");
         policy = new InsureDummy();
     }
 
